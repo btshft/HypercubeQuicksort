@@ -150,9 +150,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="mpiext.h" />
     <ClInclude Include="parallel.h" />
     <ClInclude Include="pretty.hpp" />
