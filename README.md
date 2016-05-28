@@ -1,7 +1,7 @@
-# Ïàðàëëåëüíàÿ áûñòðàÿ ñîðòèðîâêà
+# ÐŸÐ°Ñ€Ð°Ð»Ð»ÐµÐ»ÑŒÐ½Ð°Ñ Ð±Ñ‹ÑÑ‚Ñ€Ð°Ñ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ°
 
-Äàííûé ïðîåêò ðåàëèçóåò àëãîðèòì ïàðàëëåëüíîé áûñòðîé ñîðòèðîâêè íà îñíîâå òîïîëîãèè ãèïåðêóá. Òåêñòîâîå îïèñàíèå
-àëãîðèòìà ïðåäñòàâëåíî â ôàéëå "Paper.docx". 
+Ð”Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ñ€Ð¾ÐµÐºÑ‚ Ñ€ÐµÐ°Ð»Ð¸Ð·ÑƒÐµÑ‚ Ð°Ð»Ð³Ð¾Ñ€Ð¸Ñ‚Ð¼ Ð¿Ð°Ñ€Ð°Ð»Ð»ÐµÐ»ÑŒÐ½Ð¾Ð¹ Ð±Ñ‹ÑÑ‚Ñ€Ð¾Ð¹ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸ Ð½Ð° Ð¾ÑÐ½Ð¾Ð²Ðµ Ñ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð³Ð¸Ð¸ Ð³Ð¸Ð¿ÐµÑ€ÐºÑƒÐ±. Ð¢ÐµÐºÑÑ‚Ð¾Ð²Ð¾Ðµ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ðµ
+Ð°Ð»Ð³Ð¾Ñ€Ð¸Ñ‚Ð¼Ð° Ð¿Ñ€ÐµÐ´ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¾ Ð² Ñ„Ð°Ð¹Ð»Ðµ "Paper.docx". 
 
-> _**INFO**_ If you find this project but your russian language skill is quite low to get things clear
+> _**INFO**_ If you find this project useful but your russian language skill is quite low to get things clear
 > please contact me at: bitshift.it@gmail.com. I'll try to answer questions.
