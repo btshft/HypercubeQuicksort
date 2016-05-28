@@ -1,4 +1,4 @@
-#ifndef pretty_print_0x57547_sa4884X_0_1_h_guard_
+﻿#ifndef pretty_print_0x57547_sa4884X_0_1_h_guard_
 #define pretty_print_0x57547_sa4884X_0_1_h_guard_
 #pragma once
 

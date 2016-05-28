@@ -1,11 +1,11 @@
-#pragma once
+п»ї#pragma once
 #include <random>
 #include <algorithm>
 
 namespace mpi
 {
 	///<summary>
-	/// Сгенерировать рандомное что-то
+	/// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°РЅРґРѕРјРЅРѕРµ С‡С‚Рѕ-С‚Рѕ
 	///</summary>
 	class random
 	{
@@ -15,9 +15,9 @@ namespace mpi
 		typedef std::uniform_int_distribution<seed_t> uniform_seed_distr;
 		typedef std::numeric_limits<int> int_limits;
 
-		// Молодой человек, Вы что не видите,
-		// что у нас тут статический класс
-		// не надо его присваивать!
+		// РњРѕР»РѕРґРѕР№ С‡РµР»РѕРІРµРє, Р’С‹ С‡С‚Рѕ РЅРµ РІРёРґРёС‚Рµ,
+		// С‡С‚Рѕ Сѓ РЅР°СЃ С‚СѓС‚ СЃС‚Р°С‚РёС‡РµСЃРєРёР№ РєР»Р°СЃСЃ
+		// РЅРµ РЅР°РґРѕ РµРіРѕ РїСЂРёСЃРІР°РёРІР°С‚СЊ!
 		public:
 			random()         = delete;
 			random(random&)  = delete;
@@ -34,7 +34,7 @@ namespace mpi
 
 		public:
 			///<summary>
-			/// Сгенерировать рандомное целое число
+			/// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ СЂР°РЅРґРѕРјРЅРѕРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ
 			///</summary>
 			static int integer(int from = int_limits::min(), int to = int_limits::max()) {
 				init();
@@ -42,7 +42,7 @@ namespace mpi
 			}
 
 			///<summary>
-			/// Сгенерировать массив случайных чисел
+			/// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РјР°СЃСЃРёРІ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР»
 			///</summary>
 			static std::vector<int> integers(int count, 
 				int from = int_limits::min(), int to = int_limits::max()) {
@@ -55,7 +55,7 @@ namespace mpi
 			}
 
 			///<summary>
-			/// Сгенерировать массив случайных чисел по двум итераторам
+			/// РЎРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ РјР°СЃСЃРёРІ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» РїРѕ РґРІСѓРј РёС‚РµСЂР°С‚РѕСЂР°Рј
 			///</summary>
 			template<typename It>
 			static void generate(It range_from, It range_to, 

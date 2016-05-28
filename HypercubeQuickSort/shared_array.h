@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <vector>
 #include <memory>
 
@@ -28,13 +28,13 @@ namespace mpi {
 		}
 
 	public:
-		// Тип значения  
+		// РўРёРї Р·РЅР°С‡РµРЅРёСЏ  
 		typedef T value_type;
-		// Возвращает указатель на данные
+		// Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РґР°РЅРЅС‹Рµ
 		T* get() const { return _data.get(); }
-		// Возвращает размер
+		// Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂ
 		size_t size() const { return _size; }
-		// Возвращает shared_ptr
+		// Р’РѕР·РІСЂР°С‰Р°РµС‚ shared_ptr
 		shared_ptr<T> getShared() const { return _data; }
 	public:
 		// [Works]
@@ -65,7 +65,7 @@ namespace mpi {
 		}
 
 	public:
-		// Ресайз массива с переносом данных
+		// Р РµСЃР°Р№Р· РјР°СЃСЃРёРІР° СЃ РїРµСЂРµРЅРѕСЃРѕРј РґР°РЅРЅС‹С…
 		void resize(size_t nsize) {
 			T* nblock = new T[nsize];
 			for (size_t i = 0; i < _size; i++)
@@ -73,13 +73,13 @@ namespace mpi {
 			_data.reset(nblock);
 			_size = nsize;
 		}
-		// Ресайз массива без переноса данных
+		// Р РµСЃР°Р№Р· РјР°СЃСЃРёРІР° Р±РµР· РїРµСЂРµРЅРѕСЃР° РґР°РЅРЅС‹С…
 		void reallocate(size_t nsize) {
 			T* nblock = new T[nsize];
 			_data.reset(nblock);
 			_size = nsize;
 		}
-		// Аналог конструктора
+		// РђРЅР°Р»РѕРі РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 		void assign(T* data, size_t size) {
 			_data.reset(data);
 			_size = size;

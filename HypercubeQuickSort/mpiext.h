@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <type_traits>
 #include <mpi.h>
@@ -16,8 +16,8 @@
 
 namespace mpi {
 
-	// Некоторые трейты 
-	// для ограничения шаблонного параметра
+	// РќРµРєРѕС‚РѕСЂС‹Рµ С‚СЂРµР№С‚С‹ 
+	// РґР»СЏ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ С€Р°Р±Р»РѕРЅРЅРѕРіРѕ РїР°СЂР°РјРµС‚СЂР°
 	namespace traits { 
 		template<typename T> 
 		struct is_vector: std::false_type {};
@@ -37,7 +37,7 @@ namespace mpi {
 	#define ENABLE_IF_VECTOR(T) typename std::enable_if<mpi::traits::is_vector<T>::value, int>::type* = nullptr
 	#define ENABLE_IF_SARRAY(T) typename std::enable_if<mpi::traits::is_shared_array<T>::value, int>::type* = nullptr
 
-	// Определяет тип 
+	// РћРїСЂРµРґРµР»СЏРµС‚ С‚РёРї 
 	template<typename T>
 	MPI_Datatype get_mpi_datatype()
 	{
@@ -100,14 +100,14 @@ namespace mpi {
 		return _rank;
 	}
 
-	// Отправляет базовый тип указанному получателю
+	// РћС‚РїСЂР°РІР»СЏРµС‚ Р±Р°Р·РѕРІС‹Р№ С‚РёРї СѓРєР°Р·Р°РЅРЅРѕРјСѓ РїРѕР»СѓС‡Р°С‚РµР»СЋ
 	template<typename T, ENABLE_IF_FUNDAMENTAL(T)>
 	void send(const T what, int dest, int tag, MPI_Comm comm = MPI_COMM_WORLD) {
 		auto type = get_mpi_datatype<T>();
 		MPI_Send(&what, 1, type, dest, tag, comm);
 	}
 
-	// Принимает базовый тип от указанного отправителя
+	// РџСЂРёРЅРёРјР°РµС‚ Р±Р°Р·РѕРІС‹Р№ С‚РёРї РѕС‚ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
 	template<typename T, ENABLE_IF_FUNDAMENTAL(T)>
 	T receive(int source, int tag, MPI_Comm comm = MPI_COMM_WORLD) {
 		T what;
@@ -116,7 +116,7 @@ namespace mpi {
 		return what;
 	}
 
-	// Отправляет вектор указаному получателю
+	// РћС‚РїСЂР°РІР»СЏРµС‚ РІРµРєС‚РѕСЂ СѓРєР°Р·Р°РЅРѕРјСѓ РїРѕР»СѓС‡Р°С‚РµР»СЋ
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	void send(const T& what, int dest, int tag, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -127,7 +127,7 @@ namespace mpi {
 			MPI_Send(&what[0], len, type, dest, tag, comm);
 	}
 
-	// Принимает вектор от указанного отправителя
+	// РџСЂРёРЅРёРјР°РµС‚ РІРµРєС‚РѕСЂ РѕС‚ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕС‚РїСЂР°РІРёС‚РµР»СЏ
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	T receive(int source, int tag, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -141,7 +141,7 @@ namespace mpi {
 		return vec;		
 	}
 
-	// Операция отправки и приема в одной
+	// РћРїРµСЂР°С†РёСЏ РѕС‚РїСЂР°РІРєРё Рё РїСЂРёРµРјР° РІ РѕРґРЅРѕР№
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	T sendreceive(const T& what, int dest, int source, int tag, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -169,7 +169,7 @@ namespace mpi {
 		return newArr;
 	}
 
-	// Широковещательная операция для базовых типов
+	// РЁРёСЂРѕРєРѕРІРµС‰Р°С‚РµР»СЊРЅР°СЏ РѕРїРµСЂР°С†РёСЏ РґР»СЏ Р±Р°Р·РѕРІС‹С… С‚РёРїРѕРІ
 	template<typename T, ENABLE_IF_FUNDAMENTAL(T)>
 	void broadcast(T* value, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -177,7 +177,7 @@ namespace mpi {
 		MPI_Bcast(value, 1, type, root, comm);
 	}
 
-	// Широковещательная операция для векторов
+	// РЁРёСЂРѕРєРѕРІРµС‰Р°С‚РµР»СЊРЅР°СЏ РѕРїРµСЂР°С†РёСЏ РґР»СЏ РІРµРєС‚РѕСЂРѕРІ
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	void broadcast(T* value, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -194,7 +194,7 @@ namespace mpi {
 	}
 
 
-	// Рассылка по одному элементу базового типа на каждый из процессов
+	// Р Р°СЃСЃС‹Р»РєР° РїРѕ РѕРґРЅРѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ Р±Р°Р·РѕРІРѕРіРѕ С‚РёРїР° РЅР° РєР°Р¶РґС‹Р№ РёР· РїСЂРѕС†РµСЃСЃРѕРІ
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	auto scatter(const T& values, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -212,7 +212,7 @@ namespace mpi {
 		return value;
 	}
 
-	// Рассылает i-му процессу необходимое кол-во данных
+	// Р Р°СЃСЃС‹Р»Р°РµС‚ i-РјСѓ РїСЂРѕС†РµСЃСЃСѓ РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»-РІРѕ РґР°РЅРЅС‹С…
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	T scatter(const T& values, const std::vector<int>& counts, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -220,17 +220,17 @@ namespace mpi {
 		int rank, size, *displs = nullptr;
 		MPI_Comm_rank(comm, &rank);
 		MPI_Comm_size(comm, &size);
-		// Проверяем на соответствие кол-ва запрошенных
-		// элементов и кол-ва элементо всего
+		// РџСЂРѕРІРµСЂСЏРµРј РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РєРѕР»-РІР° Р·Р°РїСЂРѕС€РµРЅРЅС‹С…
+		// СЌР»РµРјРµРЅС‚РѕРІ Рё РєРѕР»-РІР° СЌР»РµРјРµРЅС‚Рѕ РІСЃРµРіРѕ
 		if (rank == root) {
 			int sum = std::accumulate(counts.begin(), counts.end(), 0);
 			if (sum > values.size())
 				MPI_THROW("Values array has less items than was requested", comm);
 		}
-		// Вектор для возврата
+		// Р’РµРєС‚РѕСЂ РґР»СЏ РІРѕР·РІСЂР°С‚Р°
 		T vec{};
 		vec.resize(counts[rank]);
-		// Считаем смещения в начальном векторе данных
+		// РЎС‡РёС‚Р°РµРј СЃРјРµС‰РµРЅРёСЏ РІ РЅР°С‡Р°Р»СЊРЅРѕРј РІРµРєС‚РѕСЂРµ РґР°РЅРЅС‹С…
 		if (rank == root) {
 			displs = new int[size];
 			displs[0] = 0;
@@ -252,17 +252,17 @@ namespace mpi {
 		int rank, size, *displs = nullptr;
 		MPI_Comm_rank(comm, &rank);
 		MPI_Comm_size(comm, &size);
-		// Проверяем на соответствие кол-ва запрошенных
-		// элементов и кол-ва элементо всего
+		// РџСЂРѕРІРµСЂСЏРµРј РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ РєРѕР»-РІР° Р·Р°РїСЂРѕС€РµРЅРЅС‹С…
+		// СЌР»РµРјРµРЅС‚РѕРІ Рё РєРѕР»-РІР° СЌР»РµРјРµРЅС‚Рѕ РІСЃРµРіРѕ
 		if (rank == root) {
 			int sum = std::accumulate(counts.begin(), counts.end(), 0);
 			if (sum > values.size())
 				MPI_THROW("Values array has less items than was requested", comm);
 		}
-		// Массив для возврата
+		// РњР°СЃСЃРёРІ РґР»СЏ РІРѕР·РІСЂР°С‚Р°
 		T arr{};
 		arr.reallocate(counts[rank]);
-		// Считаем смещения в начальном векторе данных
+		// РЎС‡РёС‚Р°РµРј СЃРјРµС‰РµРЅРёСЏ РІ РЅР°С‡Р°Р»СЊРЅРѕРј РІРµРєС‚РѕСЂРµ РґР°РЅРЅС‹С…
 		if (rank == root) {
 			displs = new int[size];
 			displs[0] = 0;
@@ -276,7 +276,7 @@ namespace mpi {
 		return arr;
 	}
 
-	// Собирает по одному простому значению в вектор
+	// РЎРѕР±РёСЂР°РµС‚ РїРѕ РѕРґРЅРѕРјСѓ РїСЂРѕСЃС‚РѕРјСѓ Р·РЅР°С‡РµРЅРёСЋ РІ РІРµРєС‚РѕСЂ
 	template<typename T, ENABLE_IF_FUNDAMENTAL(T)>
 	std::vector<T> gather(const T& value, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
@@ -295,45 +295,45 @@ namespace mpi {
 		return result;
 	}
 
-	// Собирает со всех процессов необходимое кол-во данных
+	// РЎРѕР±РёСЂР°РµС‚ СЃРѕ РІСЃРµС… РїСЂРѕС†РµСЃСЃРѕРІ РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»-РІРѕ РґР°РЅРЅС‹С…
 	template<typename T, ENABLE_IF_VECTOR(T)>
 	T gather(const T& slice, int root, MPI_Comm comm = MPI_COMM_WORLD)
 	{
 		typedef typename T::value_type inner;
 		int rank, size, 
 			recvbufSize = 0,        
-			*displs     = nullptr,  // Смещения в буфере данных для i-го фрагмента
-			*recvcounts = nullptr;  // Кол-во элементов, которые необходимо получить от процессов
+			*displs     = nullptr,  // РЎРјРµС‰РµРЅРёСЏ РІ Р±СѓС„РµСЂРµ РґР°РЅРЅС‹С… РґР»СЏ i-РіРѕ С„СЂР°РіРјРµРЅС‚Р°
+			*recvcounts = nullptr;  // РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕР»СѓС‡РёС‚СЊ РѕС‚ РїСЂРѕС†РµСЃСЃРѕРІ
 		MPI_Comm_rank(comm, &rank);
 		MPI_Comm_size(comm, &size);
-		// Получаем размер слайса текущего процесса
+		// РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ СЃР»Р°Р№СЃР° С‚РµРєСѓС‰РµРіРѕ РїСЂРѕС†РµСЃСЃР°
 		int sliceLen = slice.size();
-		// Инициализация промежуточных буферов 
+		// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С… Р±СѓС„РµСЂРѕРІ 
 		if (rank == root) {
 			recvcounts = new int[size];
 			displs = new int[size];
 		}
-		// Собираем данные о длине каждого слайса
+		// РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ Рѕ РґР»РёРЅРµ РєР°Р¶РґРѕРіРѕ СЃР»Р°Р№СЃР°
 		MPI_Gather(&sliceLen, 1, MPI_INT, recvcounts, 1, MPI_INT, root, comm);
-		// Буффер для сбора данных
+		// Р‘СѓС„С„РµСЂ РґР»СЏ СЃР±РѕСЂР° РґР°РЅРЅС‹С…
 		inner *recvbuf = nullptr;     
-		// Рассчитываем смещения для данных
+		// Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј СЃРјРµС‰РµРЅРёСЏ РґР»СЏ РґР°РЅРЅС‹С…
 		if (rank == root) {
 			displs[0] = 0;
 			for (auto p = 1; p < size; p++) {
 				displs[p] = displs[p - 1] + recvcounts[p - 1];
 			}
-			// Надеюсь я правильно это посчитал
+			// РќР°РґРµСЋСЃСЊ СЏ РїСЂР°РІРёР»СЊРЅРѕ СЌС‚Рѕ РїРѕСЃС‡РёС‚Р°Р»
 			recvbufSize = displs[size - 1] + recvcounts[size - 1];
 			recvbuf = new inner[recvbufSize];
 		}
 		// ...
 		auto type = get_mpi_datatype<inner>();
-		// Собираем данные в выходной буфер
+		// РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ РІ РІС‹С…РѕРґРЅРѕР№ Р±СѓС„РµСЂ
 		MPI_Gatherv(&slice[0], sliceLen, type, recvbuf, recvcounts, displs, type,
 			root, comm);
 
-		// Итоговый вектор
+		// РС‚РѕРіРѕРІС‹Р№ РІРµРєС‚РѕСЂ
 		T result{}; 
 		// Copy & CleanUp
 		if (rank == root) {
@@ -351,38 +351,38 @@ namespace mpi {
 		typedef typename T::value_type inner;
 		int rank, size,
 			recvbufSize = 0,
-			*displs = nullptr,  // Смещения в буфере данных для i-го фрагмента
-			*recvcounts = nullptr;  // Кол-во элементов, которые необходимо получить от процессов
+			*displs = nullptr,  // РЎРјРµС‰РµРЅРёСЏ РІ Р±СѓС„РµСЂРµ РґР°РЅРЅС‹С… РґР»СЏ i-РіРѕ С„СЂР°РіРјРµРЅС‚Р°
+			*recvcounts = nullptr;  // РљРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕР»СѓС‡РёС‚СЊ РѕС‚ РїСЂРѕС†РµСЃСЃРѕРІ
 		MPI_Comm_rank(comm, &rank);
 		MPI_Comm_size(comm, &size);
-		// Получаем размер слайса текущего процесса
+		// РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂ СЃР»Р°Р№СЃР° С‚РµРєСѓС‰РµРіРѕ РїСЂРѕС†РµСЃСЃР°
 		int sliceLen = slice.size();
-		// Инициализация промежуточных буферов 
+		// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С… Р±СѓС„РµСЂРѕРІ 
 		if (rank == root) {
 			recvcounts = new int[size];
 			displs = new int[size];
 		}
-		// Собираем данные о длине каждого слайса
+		// РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ Рѕ РґР»РёРЅРµ РєР°Р¶РґРѕРіРѕ СЃР»Р°Р№СЃР°
 		MPI_Gather(&sliceLen, 1, MPI_INT, recvcounts, 1, MPI_INT, root, comm);
-		// Буффер для сбора данных
+		// Р‘СѓС„С„РµСЂ РґР»СЏ СЃР±РѕСЂР° РґР°РЅРЅС‹С…
 		inner *recvbuf = nullptr;
-		// Рассчитываем смещения для данных
+		// Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј СЃРјРµС‰РµРЅРёСЏ РґР»СЏ РґР°РЅРЅС‹С…
 		if (rank == root) {
 			displs[0] = 0;
 			for (auto p = 1; p < size; p++) {
 				displs[p] = displs[p - 1] + recvcounts[p - 1];
 			}
-			// Надеюсь я правильно это посчитал
+			// РќР°РґРµСЋСЃСЊ СЏ РїСЂР°РІРёР»СЊРЅРѕ СЌС‚Рѕ РїРѕСЃС‡РёС‚Р°Р»
 			recvbufSize = displs[size - 1] + recvcounts[size - 1];
 			recvbuf = new inner[recvbufSize];
 		}
 		// ...
 		auto type = get_mpi_datatype<inner>();
-		// Собираем данные в выходной буфер
+		// РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ РІ РІС‹С…РѕРґРЅРѕР№ Р±СѓС„РµСЂ
 		MPI_Gatherv(slice.get(), sliceLen, type, recvbuf, recvcounts, displs, type,
 			root, comm);
 
-		// Итоговый массив
+		// РС‚РѕРіРѕРІС‹Р№ РјР°СЃСЃРёРІ
 		T result{};
 		// Copy & CleanUp
 		if (rank == root) {

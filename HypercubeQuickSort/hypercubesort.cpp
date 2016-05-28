@@ -1,4 +1,4 @@
-
+﻿
 #include <exception>
 #include "parallel.h"
 #include "pretty.hpp"

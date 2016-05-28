@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 #include "random.h"
 
@@ -21,10 +21,10 @@ namespace sequential {
 	template <typename T, typename Container = std::vector<T>>
 	void quicksort(Container& array, size_t left, size_t right) {
 		if (left < right) {
-			// Âûáèðàåì ñëó÷àéíûì îáðàçîì îï. ýëåìåíò
+			// Ð’Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ð¼ Ð¾Ð±Ñ€Ð°Ð·Ð¾Ð¼ Ð¾Ð¿. ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚
 			int pivot = mpi::random::integer(left, right);
-			// Ðàçäåëÿåì ìàññèâ íà äâå ÷àñòè ïî îïîðîíîìó ýëåìåíòó, 
-			// à òàêæå âîçâðàùàåì íîâûé îïîðíûé ýëåìåíò
+			// Ð Ð°Ð·Ð´ÐµÐ»ÑÐµÐ¼ Ð¼Ð°ÑÑÐ¸Ð² Ð½Ð° Ð´Ð²Ðµ Ñ‡Ð°ÑÑ‚Ð¸ Ð¿Ð¾ Ð¾Ð¿Ð¾Ñ€Ð¾Ð½Ð¾Ð¼Ñƒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñƒ, 
+			// Ð° Ñ‚Ð°ÐºÐ¶Ðµ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼ Ð½Ð¾Ð²Ñ‹Ð¹ Ð¾Ð¿Ð¾Ñ€Ð½Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚
 			size_t new_pivot = partition<T>(array, pivot, left, right);
 			quicksort<T>(array, left, new_pivot - 1);
 			quicksort<T>(array, new_pivot + 1, right);
